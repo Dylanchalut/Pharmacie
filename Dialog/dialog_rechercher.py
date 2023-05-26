@@ -3,10 +3,12 @@ from PyQt5.QtCore import pyqtSlot
 # Importer la boite de dialogue
 import UI_PY.dialog_recherche
 from PyQt5 import QtWidgets
-
+from Classes.Fournisseur import Fournisseur
 ######################################################
 ###### DÉFINITIONS DE LA CLASSE Fenetrelistview ######
 ######################################################
+
+
 
 class Fenetrerechercher(QtWidgets.QDialog, UI_PY.dialog_recherche.Ui_Dialog_Recherche):
     def __init__(self, parent=None):
@@ -17,3 +19,5 @@ class Fenetrerechercher(QtWidgets.QDialog, UI_PY.dialog_recherche.Ui_Dialog_Rech
         self.setupUi(self)
         self.setWindowTitle("Boîte de dialogue Rechercher")
 
+        for elt in Fournisseur.ls_fournisseur:
+            self.comboBox_nom_fournisseur.addItem(elt.Nom_compagnie)

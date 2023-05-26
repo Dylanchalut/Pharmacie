@@ -1,5 +1,5 @@
 from Classes.Medicament import Medicament
-from Classes.Medicament import Patient
+from Classes.Patient import Patient
 import jsonpickle
 
 class Fournisseur:
