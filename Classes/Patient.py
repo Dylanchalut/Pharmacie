@@ -69,8 +69,8 @@ class Patient:
         """
         import datetime
         today = datetime.date.today()
-        return today.year - p_date_naiss.year - (
-                (today.month, today.day) < (p_date_naiss.month, p_date_naiss.day))
+        return today.year - p_date_naiss.year() - (
+                (today.month, today.day) < (p_date_naiss.month(), p_date_naiss.day()))
 
     def estAdule(self):
         """
