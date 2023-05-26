@@ -66,7 +66,3 @@ class Medicament :
         chaine += "\nLe prix du médicament : " + str(self._prix)
         chaine += "\nLa catégorie du médicament :"+str(self.Categorie)
         return chaine
-
-
-class Patient:
-    pass
