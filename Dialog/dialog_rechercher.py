@@ -21,3 +21,5 @@ class Fenetrerechercher(QtWidgets.QDialog, UI_PY.dialog_recherche.Ui_Dialog_Rech
 
         for elt in Fournisseur.ls_fournisseur:
             self.comboBox_nom_fournisseur.addItem(elt.Nom_compagnie)
+
+
