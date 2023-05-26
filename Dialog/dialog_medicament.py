@@ -12,6 +12,11 @@ from Classes.Medicament import Medicament
 ###### DÉFINITIONS DE LA CLASSE Fenetrelistview ######
 ######################################################
 def verifier_code_medicament(p_code):
+    """
+    Cette fonction vérifie si le code médicament est déjà dans la liste ou non
+    :param p_code: le code du médicament
+    :return: True = si trouvé ou False = pas trouvé
+    """
     for elt in Medicament.ls_medicaments:
         if elt.Code_medicament == p_code:
             return True
@@ -21,6 +26,10 @@ def verifier_code_medicament(p_code):
 class Fenetremedicament(QtWidgets.QDialog, UI_PY.dialog_medicament.Ui_Dialog_Medicament):
 
     def cacher_label_erreur(self, B):
+        """
+        Fonction qui permet de cacher tous les labels d'erreurs
+        :param B: le paramètre B est pour qu'ensuite marquer True ou False
+        """
         self.label_erreur_code_medicament_existe_pas.setVisible(B)
         self.label_erreur_code_medicamen_existe.setVisible(B)
         self.label_erreur_code_medicament_invalide.setVisible(B)
@@ -31,16 +40,28 @@ class Fenetremedicament(QtWidgets.QDialog, UI_PY.dialog_medicament.Ui_Dialog_Med
         self.label_erreur_duree_prise_max.setVisible(B)
 
     def cacher_label_duree_prise_max(self, B):
+        """
+        Fonction qui permet de cacher tous les chose reliée a la duree prise max
+        :param B: le paramètre B est pour qu'ensuite marquer True ou False
+        """
         self.label_duree_prise_maximale.setVisible(B)
         self.lineEdit_duree_prise_max.setVisible(B)
         self.label_antibiotique.setVisible(B)
 
     def cacher_label_dose_quot_max(self, B):
+        """
+        Fonction qui permet de cacher tous les chose reliée à la dose quotidien max
+        :param B: le paramètre B est pour qu'ensuite marquer True ou False
+        """
         self.label_dose_quot_max.setVisible(B)
         self.lineEdit_dose_quot_max.setVisible(B)
         self.label_analgesique.setVisible(B)
 
     def cacher_label_effet_medicament(self,B):
+        """
+        Fonction qui permet de cacher tous les chose reliée a la comboBox effet médicament
+        :param B: le paramètre B est pour qu'ensuite marquer True ou False
+        """
         self.comboBox_effet_medicament.setVisible(B)
         self.label_effet_medicament.setVisible(B)
         self.label_corticoide.setVisible(B)
@@ -60,10 +81,16 @@ class Fenetremedicament(QtWidgets.QDialog, UI_PY.dialog_medicament.Ui_Dialog_Med
         self.cacher_label_dose_quot_max(False)
         self.cacher_label_effet_medicament(False)
         self.cacher_label_duree_prise_max(True)
+
+        #Permet de savoir quelle catégorie il a choisie
         self.comboBox_categorie.currentIndexChanged.connect(self.affiche_widget)
 
 
     def affiche_widget(self):
+        """
+        Fonction pour afficher les widget personnaliser selon quelle index de la comboBox catégorie
+        est choisi.
+        """
         if self.comboBox_categorie.currentText() == "Antibiotique":
             self.cacher_label_duree_prise_max(True)
             self.cacher_label_dose_quot_max(False)
@@ -80,6 +107,12 @@ class Fenetremedicament(QtWidgets.QDialog, UI_PY.dialog_medicament.Ui_Dialog_Med
             self.cacher_label_effet_medicament(True)
 
     def Gestionner_categorie(self, p_categorie_m):
+        """
+        Fonction qui permet de rendre le code plus condenser
+        permet aussi de prendre les paramètre principal
+        :param p_categorie_m: ComboBox catégorie
+        :return:
+        """
         if p_categorie_m == "Antibiotique":
             M = Antibiotique()
         elif p_categorie_m == "Analgésique":
@@ -128,6 +161,9 @@ class Fenetremedicament(QtWidgets.QDialog, UI_PY.dialog_medicament.Ui_Dialog_Med
 
     @pyqtSlot()
     def on_pushButton_ajouter_clicked(self):
+        """
+       Gestionnaire d'événement qui ajoute les médicament dans une liste
+        """
         self.cacher_label_erreur(False)
 
         if self.comboBox_categorie.currentText() == "Antibiotique":

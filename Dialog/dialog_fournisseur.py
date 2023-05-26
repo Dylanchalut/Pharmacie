@@ -24,6 +24,7 @@ class Fenetrefournisseur(QtWidgets.QDialog, UI_PY.dialog_fournisseur.Ui_Dialog):
         self.setupUi(self)
         self.setWindowTitle("Boîte de dialogue Fournisseur")
 
+        # Permet de remplir la comboBox "numero patient" avec les numero du patient dans la liste des patients
         for elt in Patient.ls_patients:
             self.comboBox_numero_patient.addItem(elt.Numero_patient)
 
@@ -31,6 +32,9 @@ class Fenetrefournisseur(QtWidgets.QDialog, UI_PY.dialog_fournisseur.Ui_Dialog):
 
 
     def on_pushButton_ajouter_patient_listview_clicked(self):
+        """
+        Gestionnaire d'événement qui sert à ajouter le numéro des patient a la listview
+        """
 
         for elt_patient in Patient.ls_patients:
             if elt_patient.Numero_patient == self.comboBox_numero_patient.currentText():
@@ -39,6 +43,9 @@ class Fenetrefournisseur(QtWidgets.QDialog, UI_PY.dialog_fournisseur.Ui_Dialog):
                     self.model.appendRow(item)
 
     def on_pushButton_serialiser_clicked(self):
+        """
+        Gestionnaire d'événement qui sérialise dans un fichier json le nom de la compagnie et le code
+        """
 
         F = Fournisseur()
 

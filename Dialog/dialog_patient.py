@@ -14,6 +14,11 @@ from PyQt5.QtCore import pyqtSlot, QDate
 ###### DÉFINITIONS DE LA CLASSE Fenetrelistview ######
 ######################################################
 def verifier_num_patient(p_numero):
+    """
+    Cette fonction vérifie si le numero patient est déjà dans la liste ou non
+    :param p_numero: numero patient
+    :return: True = si trouvé ou False = pas trouvé
+    """
     for elt in Patient.ls_patients:
         if elt.Numero_patient == p_numero:
             return True
@@ -21,6 +26,11 @@ def verifier_num_patient(p_numero):
 
 
 def verifier_nom_patient(p_nom):
+    """
+    Cette fonction vérifie si le nom patient est déjà dans la liste ou non
+    :param p_numero: nom patient
+    :return: True = si trouvé ou False = pas trouvé
+    """
     for elt in Patient.ls_patients:
         if elt.Nom == p_nom:
             return True
@@ -28,6 +38,11 @@ def verifier_nom_patient(p_nom):
 
 
 def verifier_prenom_patient(p_prenom):
+    """
+    Cette fonction vérifie si le prenom patient est déjà dans la liste ou non
+    :param p_numero: prenom patient
+    :return: True = si trouvé ou False = pas trouvé
+    """
     for elt in Patient.ls_patients:
         if elt.Prenom == p_prenom:
             return True
@@ -35,6 +50,11 @@ def verifier_prenom_patient(p_prenom):
 
 
 def verifier_date_patient(p_date):
+    """
+    Cette fonction vérifie si le date naissance patient est déjà dans la liste ou non
+    :param p_numero: date de naissance patient
+    :return: True = si trouvé ou False = pas trouvé
+    """
     for elt in Patient.ls_patients:
         if elt.Date_naiss == p_date:
             return True
@@ -45,7 +65,7 @@ class Fenetrepatient(QtWidgets.QDialog, UI_PY.dialog_patient.Ui_Dialog):
 
     def cacher_label_erreur(self):
         """
-        -----------------------------
+        Fonction qui permet de cacher tous les labels d'erreurs
         :return:
         """
         self.label_erreur_num_patient_existe.setVisible(False)
@@ -67,7 +87,7 @@ class Fenetrepatient(QtWidgets.QDialog, UI_PY.dialog_patient.Ui_Dialog):
     @pyqtSlot()
     def on_pushButton_Ajouter_patient_clicked(self):
         """
-        Gestionnaire d'événement du bouton ajouter
+        Gestionnaire d'événement qui sert a ajouter les patients dans une liste
         """
         self.cacher_label_erreur()
 
@@ -109,6 +129,10 @@ class Fenetrepatient(QtWidgets.QDialog, UI_PY.dialog_patient.Ui_Dialog):
 
     @pyqtSlot()
     def on_pushButton_supprimer_patient_clicked(self):
+        """
+        Gestionnaire d'événement qui sert a supprimer un patient dans sa liste
+        :return:
+        """
         self.cacher_label_erreur()
 
         P = Patient()
